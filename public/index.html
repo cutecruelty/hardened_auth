@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #reg-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 25%;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 98vh;
+        background-color: #101010;
+        color: #fff;
+      }
+
+      .required {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .input-container {
+        display: flex;
+        gap: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="reg-form">
+      <h1>hardened auth service</h1>
+      <input type="email" id="email" placeholder="enter email" required />
+      <div class="input-container">
+        <input
+          type="password"
+          id="password"
+          placeholder="enter password"
+          required
+        />
+        <button class="show-pw" type="button">s</button>
+      </div>
+      <div class="input-container">
+        <input
+          type="password"
+          id="confirm-password"
+          placeholder="confirm password"
+          required
+        />
+        <button class="show-pw" type="button">s</button>
+      </div>
+      <div class="required">
+        <input type="checkbox" id="geo-consent" required />
+        <p>(required) you allow your geolocation to be logged</p>
+      </div>
+      <button id="submit">register</button>
+    </form>
+  </body>
+  <script>
+    const showBtns = document.querySelectorAll(".show-pw");
+
+    showBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const targetInput = e.target.parentElement.querySelector("input");
+
+        targetInput.type =
+          targetInput.type === "password" ? "text" : "password";
+        e.target.textContent = targetInput.type === "password" ? "s" : "h";
+      });
+    });
+  </script>
+</html>
