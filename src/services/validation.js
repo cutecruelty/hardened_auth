@@ -1,21 +1,33 @@
 const commonPasswordList = require("fxa-common-password-list");
 const bcrypt = require("bcrypt");
 
-const PASSWORD_RULES = Object.freeze([
+const PASSWORD_RULES = [
   { test: (p) => p.length >= 8, id: "length", msg: "at least 8 characters" },
-  { test: (p) => /[A-Z]/.test(p), id: "upper", msg: "one uppercase letter" },
-  { test: (p) => /[a-z]/.test(p), id: "lower", msg: "one lowercase letter" },
-  { test: (p) => /[0-9]/.test(p), id: "number", msg: "one number" },
+  {
+    test: (p) => /[A-Z]/.test(p),
+    id: "upper",
+    msg: "at least a single uppercase character",
+  },
+  {
+    test: (p) => /[a-z]/.test(p),
+    id: "lower",
+    msg: "at least a single lowercase character",
+  },
+  {
+    test: (p) => /[0-9]/.test(p),
+    id: "num",
+    msg: "at least a single number",
+  },
   {
     test: (p) => /[!@#$%^&*(),.?":{}|<>_\-]/.test(p),
-    id: "symbol",
-    msg: "one symbol",
+    id: "sym",
+    msg: "at least a single symbol",
   },
-]);
+];
 
 async function registerPassword(password) {
-  if (typeof password !== "string") {
-    throw new Error("invalid password input type");
+  if (typeof password != "string") {
+    throw new Error("invalid password data type");
   }
 
   const failedRules = PASSWORD_RULES.filter((rule) => !rule.test(password));
@@ -29,7 +41,7 @@ async function registerPassword(password) {
   if (commonPasswordList.test(password.toLowerCase())) {
     return {
       success: false,
-      errors: ["This password is too common and easily guessed"],
+      errors: ["this password is too common or has been compromised"],
     };
   }
 

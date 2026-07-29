@@ -44,8 +44,16 @@
           autocomplete="new-password"
           required
         />
+
         <button class="show-pw" type="button">s</button>
       </div>
+      <ul id="rule-checklist">
+        <li data-rule="length">at least 8 characters</li>
+        <li data-rule="upper">one uppercase letter</li>
+        <li data-rule="lower">one lowercase letter</li>
+        <li data-rule="num">one number</li>
+        <li data-rule="sym">one symbol</li>
+      </ul>
       <div class="input-container">
         <input
           type="password"
@@ -78,4 +86,5 @@
       });
     });
   </script>
+  <script src="validation.js"></script>
 </html>
