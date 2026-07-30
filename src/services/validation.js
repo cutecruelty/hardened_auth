@@ -53,3 +53,9 @@ async function registerPassword(password) {
     hashedPassword: hashedPassword,
   };
 }
+
+function isValidTelegramHandle(name) {
+  return /^[a-zA-Z][a-zA-Z0-9_]{4,31}$/.test(name);
+}
+
+module.exports = { registerPassword, isValidTelegramHandle };

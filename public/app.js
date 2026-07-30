@@ -26,5 +26,10 @@ form.addEventListener("submit", async (event) => {
   });
 
   const data = await response.json();
-  console.log(data);
+
+  if (!response.ok) {
+    confirmMessage.textContent = data.errors.join(", ");
+  } else {
+    console.log("registered", data);
+  }
 });
