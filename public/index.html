@@ -35,7 +35,7 @@
   <body>
     <form id="reg-form">
       <h1>hardened auth service</h1>
-      <input type="email" id="email" placeholder="enter email" required />
+      <input type="text" id="name" placeholder="enter telegram @" required />
       <div class="input-container">
         <input
           type="password"
@@ -64,6 +64,7 @@
         />
         <button class="show-pw" type="button">s</button>
       </div>
+      <p id="confirm-message"></p>
       <div class="required">
         <input type="checkbox" id="geo-consent" required />
         <p>(required) you allow your geolocation to be logged</p>
@@ -87,4 +88,5 @@
     });
   </script>
   <script src="validation.js"></script>
+  <script src="app.js"></script>
 </html>

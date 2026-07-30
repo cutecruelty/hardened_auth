@@ -12,5 +12,19 @@ const passwordInput = document.getElementById("password");
 
 passwordInput.addEventListener("input", () => {
   const value = passwordInput.value;
-  
+  for (const [ruleId, checkFn] of Object.entries(rules)) {
+    const li = ruleChecklist.querySelector(`[data-rule="${ruleId}"]`);
+    li.style.color = checkFn(value) ? "limegreen" : "#888";
+  }
+});
+
+const confirmPasswordInput = document.getElementById("confirm-password");
+const confirmMessage = document.getElementById("confirm-message");
+
+confirmPasswordInput.addEventListener("input", () => {
+  const pwValue = passwordInput.value;
+  const confValue = confirmPasswordInput.value;
+
+  confirmMessage.textContent =
+    pwValue !== confValue ? "passwords do not match" : "";
 });
